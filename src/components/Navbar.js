@@ -10,13 +10,46 @@ const Nav = styled.nav`
   justify-content: space-between;
   padding: 0 20px;
   border-bottom: 3px solid rgb(15,15,15);
+  height: 55px;
 `;
 
 const Logo = styled.img`
   width: 50px;
   height: 50px;
   cursor: pointer;
-  animation: ${({ animate }) => (animate ? animation : 'none')} 1s infinite alternate;
+`;
+
+const BurgerMenu = styled.div`
+  display: none;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const BurgerIcon = styled.div`
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  margin: 6px 0;
+  transition: transform 0.3s ease-in-out;
+
+  ${({ open }) => open && `
+    transform: rotate(-45deg);
+  `}
+
+  &:nth-child(2) {
+    ${({ open }) => open && `
+      opacity: 0;
+    `}
+  }
+
+  &:nth-child(3) {
+    ${({ open }) => open && `
+      transform: rotate(45deg);
+    `}
+  }
 `;
 
 const Ul = styled.ul`
@@ -24,6 +57,21 @@ const Ul = styled.ul`
   display: flex;
   margin: 0;
   padding: 0;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: ${({ open }) => (open ? 'rgba(0, 0, 0, 0.9)' : 'transparent')};
+    opacity: ${({ open }) => (open ? '1' : '0')};
+    visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  }
 `;
 
 const Li = styled.li`
@@ -63,44 +111,32 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const animation = keyframes`
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-`;
-
 const Navbar = () => {
-  const [animate, setAnimate] = useState(true);
-
-  const handleMouseEnter = () => {
-    setAnimate(true);
-  };
-
-  const handleClick = () => {
-    setAnimate(false);
+  const [open, setOpen] = useState(false);
+  const handleBurgerClick = () => {
+    setOpen(!open);
   };
 
   return (
     <Nav>
-      <Logo src={logo} alt="Logo" animate={animate.toString()} onMouseEnter={handleMouseEnter} onClick={handleClick} />
-      <Ul>
-        <Li animate={animate.toString()}>
-          <StyledLink to="/">Accueil</StyledLink>
+      <Logo src={logo} alt="Logo" />
+      <BurgerMenu onClick={handleBurgerClick}>
+        <BurgerIcon open={open} />
+        <BurgerIcon open={open} />
+        <BurgerIcon open={open} />
+      </BurgerMenu>
+      <Ul open={open}>
+        <Li animate={open.toString()}>
+          <StyledLink to="/" onClick={handleBurgerClick}>Accueil</StyledLink>
         </Li>
-        <Li animate={animate.toString()}>
-          <StyledLink to="/forfaits">Forfaits</StyledLink>
+        <Li animate={open.toString()}>
+          <StyledLink to="/forfaits" onClick={handleBurgerClick}>Forfaits</StyledLink>
         </Li>
-        <Li animate={animate.toString()}>
-          <StyledLink to="/assistance">Assistance</StyledLink>
+        <Li animate={open.toString()}>
+          <StyledLink to="/assistance" onClick={handleBurgerClick}>Assistance</StyledLink>
         </Li>
-        <Li animate={animate.toString()}>
-          <StyledLink to="/contact">Contact</StyledLink>
+        <Li animate={open.toString()}>
+          <StyledLink to="/contact" onClick={handleBurgerClick}>Contact</StyledLink>
         </Li>
       </Ul>
     </Nav>

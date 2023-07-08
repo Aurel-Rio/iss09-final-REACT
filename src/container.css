@@ -1,50 +1,106 @@
-
-
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: rgb(20, 20, 20);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(20, 20, 20);
+}
+
+/* Styles pour la navbar */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 55px;
+  background-color: #000000;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 999;
+}
+
+.burger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.burger-menu span {
+  width: 100%;
+  height: 3px;
+  background-color: #ffffff;
+}
+
+/* Styles pour le menu déroulant */
+
+.dropdown-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  z-index: 999;
+}
+
+.dropdown-menu.open {
+  display: block;
+}
+
+.dropdown-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.dropdown-menu ul li {
+  margin-bottom: 20px;
 }
 
 /* Styles pour le container */
 
 .custom-container {
-    position: relative;
-    background-color: #000000b4;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgb(1, 34, 0), 0 -2px 4px rgb(0, 0, 34);
-    text-shadow: 2px 2px 4px rgb(0, 0, 0);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1.3);
-    
-  }
-  
-  
-.title {
-    display: block;
-    width: auto;
-    margin: auto;
-    padding: 15px;
-    border-radius: 5px;
-    background-color: grey;
-    text-shadow: 1px 1px rgb(100, 100, 100);
+  position: relative;
+  background-color: #000000b4;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgb(1, 34, 0), 0 -2px 4px rgb(0, 0, 34);
+  text-shadow: 2px 2px 4px rgb(0, 0, 0);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.3);
 }
 
+.title {
+  display: block;
+  width: auto;
+  margin: auto;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: grey;
+  text-shadow: 1px 1px rgb(100, 100, 100);
+}
 
 .background-image {
-    position: fixed;
-    left: -100px;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0.5;
-    transform: rotate(145deg);
-  }
-
-  
-  
+  position: fixed;
+  left: -100px;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.5;
+  transform: rotate(145deg);
+}
