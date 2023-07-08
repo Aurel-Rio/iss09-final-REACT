@@ -1,7 +1,7 @@
-import logo from '../assets/logo.png';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
+import logo from '../assets/logo.png';
 
 const Nav = styled.nav`
   background: linear-gradient(135deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 89%, rgba(6,46,0,1) 100%, rgba(9,121,10,1) 100%);
@@ -45,7 +45,7 @@ const Li = styled.li`
 
   &:hover::before {
     transform: scaleX(1);
-    background: linear-gradient(135deg, rgba(33,255,0,1) 0%, rgb(6, 70, 7) 0%, rgba(0,0,0,1) 72%, rgba(255,255,255,1) 100%); // Modifier la couleur de fond pour rendre les traits plus lumineux
+    background: linear-gradient(135deg, rgba(33,255,0,1) 0%, rgb(6, 70, 7) 0%, rgba(0,0,0,1) 72%, rgba(255,255,255,1) 100%);
   }
 `;
 
@@ -76,7 +76,7 @@ const animation = keyframes`
 `;
 
 const Navbar = () => {
-  const [animate, setAnimate] = useState(true); // Mettre à true par défaut
+  const [animate, setAnimate] = useState(true);
 
   const handleMouseEnter = () => {
     setAnimate(true);
@@ -84,23 +84,22 @@ const Navbar = () => {
 
   const handleClick = () => {
     setAnimate(false);
-    // Ajoutez ici le code pour redémarrer l'intro animée
   };
 
   return (
     <Nav>
-      <Logo src={logo} alt="Logo" animate={animate} onMouseEnter={handleMouseEnter} onClick={handleClick} />
+      <Logo src={logo} alt="Logo" animate={animate.toString()} onMouseEnter={handleMouseEnter} onClick={handleClick} />
       <Ul>
-        <Li animate={animate}>
+        <Li animate={animate.toString()}>
           <StyledLink to="/">Accueil</StyledLink>
         </Li>
-        <Li animate={animate}>
+        <Li animate={animate.toString()}>
           <StyledLink to="/forfaits">Forfaits</StyledLink>
         </Li>
-        <Li animate={animate}>
+        <Li animate={animate.toString()}>
           <StyledLink to="/assistance">Assistance</StyledLink>
         </Li>
-        <Li animate={animate}>
+        <Li animate={animate.toString()}>
           <StyledLink to="/contact">Contact</StyledLink>
         </Li>
       </Ul>
