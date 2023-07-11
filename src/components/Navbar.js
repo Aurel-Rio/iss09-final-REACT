@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import logo from '../assets/logo.png';
 
 const Nav = styled.nav`
@@ -25,30 +25,29 @@ const BurgerMenu = styled.div`
 
   @media (max-width: 768px) {
     display: block;
+    z-index: 2;
   }
 `;
 
 const BurgerIcon = styled.div`
-  width: 30px;
+  width: 25px;
   height: 3px;
   background-color: white;
-  margin: 6px 0;
+  margin: 4px 0;
   transition: transform 0.3s ease-in-out;
 
-  ${({ open }) => open && `
-    transform: rotate(-45deg);
-  `}
-
-  &:nth-child(2) {
-    ${({ open }) => open && `
-      opacity: 0;
-    `}
+  &:first-child {
+    transform: ${({ open }) => (open ? 'rotate(45deg)' : 'none')};
+    transform-origin: top left;
   }
 
-  &:nth-child(3) {
-    ${({ open }) => open && `
-      transform: rotate(45deg);
-    `}
+  &:nth-child(2) {
+    opacity: ${({ open }) => (open ? '0' : '1')};
+  }
+
+  &:last-child {
+    transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'none')};
+    transform-origin: top left;
   }
 `;
 
@@ -57,6 +56,7 @@ const Ul = styled.ul`
   display: flex;
   margin: 0;
   padding: 0;
+  z-index: ${({ open }) => (open ? '1' : '0')};
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -65,12 +65,13 @@ const Ul = styled.ul`
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background-color: ${({ open }) => (open ? 'rgba(0, 0, 0, 0.9)' : 'transparent')};
     opacity: ${({ open }) => (open ? '1' : '0')};
     visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    transform: scale(2);
   }
 `;
 
@@ -95,6 +96,10 @@ const Li = styled.li`
     transform: scaleX(1);
     background: linear-gradient(135deg, rgba(33,255,0,1) 0%, rgb(6, 70, 7) 0%, rgba(0,0,0,1) 72%, rgba(255,255,255,1) 100%);
   }
+
+  @media (max-width: 768px) {
+    font-size: 2em;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -113,6 +118,7 @@ const StyledLink = styled(Link)`
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+
   const handleBurgerClick = () => {
     setOpen(!open);
   };
@@ -126,17 +132,17 @@ const Navbar = () => {
         <BurgerIcon open={open} />
       </BurgerMenu>
       <Ul open={open}>
-        <Li animate={open.toString()}>
-          <StyledLink to="/" onClick={handleBurgerClick}>Accueil</StyledLink>
+        <Li animate={open.toString()} onClick={handleBurgerClick}>
+          <StyledLink to="/">Accueil</StyledLink>
         </Li>
-        <Li animate={open.toString()}>
-          <StyledLink to="/forfaits" onClick={handleBurgerClick}>Forfaits</StyledLink>
+        <Li animate={open.toString()} onClick={handleBurgerClick}>
+          <StyledLink to="/forfaits">Forfaits</StyledLink>
         </Li>
-        <Li animate={open.toString()}>
-          <StyledLink to="/assistance" onClick={handleBurgerClick}>Assistance</StyledLink>
+        <Li animate={open.toString()} onClick={handleBurgerClick}>
+          <StyledLink to="/assistance">Assistance</StyledLink>
         </Li>
-        <Li animate={open.toString()}>
-          <StyledLink to="/contact" onClick={handleBurgerClick}>Contact</StyledLink>
+        <Li animate={open.toString()} onClick={handleBurgerClick}>
+          <StyledLink to="/contact">Contact</StyledLink>
         </Li>
       </Ul>
     </Nav>

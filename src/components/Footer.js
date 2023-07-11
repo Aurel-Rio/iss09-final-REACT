@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 
 const FooterContainer = styled.footer`
   background-color: black;
@@ -13,7 +14,13 @@ const FooterContainer = styled.footer`
   left: 0;
   width: 100%;
   border-top: 3px solid rgb(15, 15, 15);
-  background: linear-gradient(135deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 89%, rgba(6,46,0,1) 100%, rgba(9,121,10,1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 0, 0, 1) 89%,
+    rgba(6, 46, 0, 1) 100%,
+    rgba(9, 121, 10, 1) 100%
+  );
 `;
 
 const FooterText = styled.p`
@@ -21,10 +28,31 @@ const FooterText = styled.p`
   margin: 0;
 `;
 
+const SocialIcons = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+
+  & > * {
+    margin-left: 10px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+  }
+`;
+
 const Footer = () => {
   return (
     <FooterContainer>
       <FooterText>© 2023 Servant Aurélien. Tous droits réservés.</FooterText>
+      <SocialIcons>
+        <a href="https://www.linkedin.com/in/aur%C3%A9lien-servant-a85218217/" target="_blank" rel="noopener noreferrer">
+          <FaLinkedin />
+        </a>
+        <a href="https://github.com/Aurel-Rio" target="_blank" rel="noopener noreferrer">
+          <FaGithub />
+        </a>
+      </SocialIcons>
     </FooterContainer>
   );
 };

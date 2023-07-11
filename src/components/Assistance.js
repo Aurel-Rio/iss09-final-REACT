@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -13,29 +13,40 @@ const Title = styled.h1`
 
 const Price = styled.p`
   font-size: 20px;
-  color:  	rgb(220,220,220);
+  color: white;
   margin-bottom: 10px;
 `;
 
 const Description = styled.p`
   font-size: 16px;
-  color:  	rgb(220,220,220);
+  color: grey;
   margin-bottom: 20px;
 `;
 
+
 const Assistance = () => {
+  useEffect(() => {
+    document.title = 'Assistance - ISS09 Informatiques saverdun';
+  }, []);
+
   return (
     <Container className="custom-container">
-      <Title className='title'>Assistance</Title>
-      <Price>Conseils et accompagnement : sur RDV chez vous 30€ la première heure puis dégressif + déplacement</Price>
+      <Title className="title">Assistance</Title>
+      <Price> 
+        <span style={{ fontSize: "1.2em", textShadow: "1px 1px blue" }}>
+          Conseils et accompagnement :
+        </span> 
+      </Price>     
       <Description>
-        Conseils au sujet du matériel informatique à choisir, correspondant à votre budget. Quel ordinateur, écran, imprimante, Web Cam etc…
+        Sur RDV chez vous 30€ la première heure puis dégressif + déplacement.
+        Nous vous fournissons des conseils au sujet du matériel informatique à choisir, correspondant à votre budget.
+        Que ce soit pour choisir un ordinateur, un écran, une imprimante, une webcam, etc.
       </Description>
       <Description>
-        Réalisation d’un ordinateur personnalisé. Vous voulez une configuration personnalisée, un ordinateur spécifique à vos besoins. Nous évaluons avec vous vos besoins pour vous réaliser une configuration la plus adaptée.
+        Nous réalisons également des ordinateurs personnalisés. Si vous avez des besoins spécifiques, nous évaluons avec vous vos besoins pour vous proposer une configuration adaptée.
       </Description>
       <Description>
-        Réalisation d’un kit pour rajeunir votre ancien ordinateur. Nous étudions avec vous les améliorations et changements à effectuer : Carte Mère, Processeur, Carte graphique, Mémoire Alimentation etc… pour rajeunir votre ancien ordinateur.
+        Si vous souhaitez rajeunir votre ancien ordinateur, nous pouvons étudier avec vous les améliorations et les changements à effectuer, tels que la carte mère, le processeur, la carte graphique, la mémoire, l'alimentation, etc.
       </Description>
     </Container>
   );

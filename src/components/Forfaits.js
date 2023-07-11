@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -13,33 +13,50 @@ const Title = styled.h1`
 
 const Price = styled.p`
   font-size: 20px;
-  color:  	rgb(220,220,220);
+  color: #555;
   margin-bottom: 10px;
+  font-weight: bold;
 `;
 
 const Description = styled.p`
   font-size: 16px;
-  color:  	rgb(220,220,220);
+  color: #777;
   margin-bottom: 20px;
+  line-height: 1.5;
+`;
+
+const HighlightedTitle = styled.span`
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px blue;
 `;
 
 const Forfaits = () => {
+  useEffect(() => {
+    document.title = 'Forfaits - ISS09 Informatiques saverdun';
+  }, []);
+
   return (
-    <Container  className="custom-container">
-      <Title className='title'>Forfaits</Title>
-      <Price>Forfait Correctif : 45€ en atelier</Price>
+    <Container className="custom-container">
+      <Title className="title">Forfaits</Title>
+      
+      <Price>
+        <HighlightedTitle>Forfait Correctif :</HighlightedTitle> 55€ en atelier
+      </Price>
       <Description>
-        Blocage intégral des Publicités intempestives
-        Nettoyage complet de votre système, Suppression des logiciels inutiles, Désinfection de virus
-        Correction de vos drivers (carte mère, carte graphique, imprimante …)
-        Optimisation, accélération de votre système, remplacement des logiciels obsolètes
+        Blocage intégral des publicités intempestives
+        Nettoyage complet de votre système, suppression des logiciels inutiles, désinfection de virus
+        Correction de vos drivers (carte mère, carte graphique, imprimante...)
+        Optimisation et accélération de votre système, remplacement des logiciels obsolètes
       </Description>
-      <Price>Forfait nouvelle installation ou réinstallation : 75€ en atelier</Price>
+      <Price>
+        <HighlightedTitle>Forfait nouvelle installation ou réinstallation :</HighlightedTitle> 75€ en atelier
+      </Price>
       <Description>
-        Installation ou Réinstallation du Logiciel d’exploitation ( WINDOWS ou Linux ou Mac)
-        Installation des drivers (carte mère, carte graphique, imprimante …)
-        Mise à jour du système et de tous les logiciels utiles (java, antivirus, messagerie, dessin, vidéo, audio, …)
-        Optimisation du système d’exploitation en fonction du matériel.
+        Installation ou réinstallation du logiciel d'exploitation (Windows, Linux ou Mac)
+        Installation des drivers (carte mère, carte graphique, imprimante...)
+        Mise à jour du système et de tous les logiciels utiles (Java, antivirus, messagerie, dessin, vidéo, audio...)
+        Optimisation du système d'exploitation en fonction du matériel
       </Description>
     </Container>
   );

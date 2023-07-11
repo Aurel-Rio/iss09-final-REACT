@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Forfaits from './components/Forfaits';
 import Assistance from './components/Assistance';
 import Contact from './components/Contact';
+import NotFound from './components/NotFound';
 import './container.css';
 import back02 from './assets/back02.png';
 import { StyleSheetManager } from 'styled-components';
@@ -19,8 +20,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Code de l'effet
-  }, [handleAnimationComplete]);
+    document.title = 'ISS09 Informatiques saverdun';
+    const faviconLink = document.querySelector("link[rel='icon']");
+    faviconLink.href = `${process.env.PUBLIC_URL}/logo.ico`;
+  }, []);
 
   return (
     <StyleSheetManager target={document.head}>
@@ -35,6 +38,7 @@ function App() {
             <Route path="/forfaits" element={<Forfaits />} />
             <Route path="/assistance" element={<Assistance />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           {showIntro ? null : <Footer />}
         </div>
